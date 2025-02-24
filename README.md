@@ -17,16 +17,16 @@ This challenge will test your React Native skills—including authentication, de
 ---
 
 ## Overview
-In this challenge, you’ll build a **React Native** application called **Task Navigator** that interacts with the [GoRest API](https://gorest.co.in/). The primary goal is to demonstrate how you handle:
+In this challenge, you'll build a **React Native** application called **Task Navigator** that interacts with the [GoRest API](https://gorest.co.in/). The primary goal is to demonstrate how you handle:
 
 1. **Authentication** using a Bearer token.  
-2. **CRUD operations** on to-do items (fetched from GoRest’s `/todos` endpoint).  
+2. **CRUD operations** on to-do items (fetched from GoRest's `/todos` endpoint).  
 3. **Deep Linking** (open a specific to-do screen via a URL).  
 4. **Offline** data access (basic caching, potentially queuing updates offline).  
 5. **Testing** (at least some unit tests, additional tests optional).  
 6. **UI/UX** best practices in React Native.
 
-By the end of this challenge, we should see a working mobile app with a clean structure, showcasing your knowledge of React Native’s key concepts.
+By the end of this challenge, we should see a working mobile app with a clean structure, showcasing your knowledge of React Native's key concepts.
 
 ---
 
@@ -110,7 +110,7 @@ By the end of this challenge, we should see a working mobile app with a clean st
 ## Technical Details
 
 1. **Platform**: React Native (0.70+ recommended).
-2. **Language**: TypeScript or JavaScript—choose whichever you’re comfortable with.
+2. **Language**: TypeScript or JavaScript—choose whichever you're comfortable with.
 3. **State Management**: Redux, Context + Hooks, or React Query—any robust solution is acceptable.
 4. **Networking**: `fetch` or `axios`—use whichever you prefer.
 5. **Navigation**: [React Navigation](https://reactnavigation.org/) recommended.
@@ -156,3 +156,36 @@ Your submission will be evaluated on:
    npx react-native init TaskNavigator
    cd TaskNavigator
    # or use expo if you prefer
+
+```
+
+## Testing Deep Linking
+
+To test the deep linking functionality in your app, you can use the following command in your terminal:
+
+```bash
+adb shell am start -W -a android.intent.action.VIEW -d "tasknavigator://todo/74962" com.tasknavigator
+```
+
+### Steps to Run Deep Linking
+
+1. **Run Your App**: Make sure your React Native app is running on an Android emulator or a physical device. You can start your app using:
+
+   ```bash
+   npx react-native run-android
+   ```
+
+2. **Open a Terminal**: Open a terminal window where you can run ADB commands.
+
+3. **Execute the Deep Link Command**: Run the following command to test deep linking:
+
+   ```bash
+   adb shell am start -W -a android.intent.action.VIEW -d "tasknavigator://todo/74962" com.tasknavigator
+   ```
+
+4. **Observe the Behavior**: After executing the command, your app should navigate to the `TodoDetails` screen for the to-do with ID `74962`. If the app is in the background or closed, it should open and navigate to the correct screen.
+
+### Troubleshooting
+
+- If you encounter any issues, ensure that the deep linking configuration in your `AndroidManifest.xml` is set up correctly.
+- Make sure that the `tasknavigator` scheme is defined and that the `TodoDetails` screen is properly configured to accept the `id` parameter.
